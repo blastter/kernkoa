@@ -1,3 +1,10 @@
+<style>
+	body.kkbody{
+		background-color: black;
+	}
+</style>
+
+<body class="kknbody">
 KernKoa
 
 Kern = Kernel (German)
@@ -35,3 +42,4 @@ There are two steps to configure KernKoa, the configuration of the project and t
 	+ kernkoa_uwsgi.ini: configuration of uwsgi fast cgi script, read it to change paramenters.
 	+ kernkoa_nginx.conf: server and routing options for NGinX, read it to configure it.
 
+</body>
