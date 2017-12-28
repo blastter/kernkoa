@@ -5,4 +5,4 @@ from kernkoa import *
 
 class index:
 	def index(self, params = None):
-		return "hola mundo"
+		return "KernKoa is working okay!."
