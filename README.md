@@ -45,6 +45,7 @@ Looking into the folder structure, you can define it as you want (in config.py) 
 3. Create the virtual envioroment with virtualenv inside the proyect.
 
 	```virtualenv -p python3 venv3```
+
 4. Activate the virtual envioroment.
 
 	```. venv3/bin/activate```
@@ -52,6 +53,22 @@ Looking into the folder structure, you can define it as you want (in config.py) 
 	The console should look like:
 
 	```(venv3) root@kernkoa:/usr/local/kernkoa#```
+
+5. Install python libs:
+
+	```pip install uwsgi flask```
+
+	Te test it:
+	```python kernkoa.py```
+	Ther debug http server shoud be listening on port 5000.
+
+6. Execute setup.sh. (if server already have nginx please don't execute this. Open de the script and omit the rm part for nginx).
+	
+	```sh setup.sh```
+
+	It will install UWSGI service, create de configuration folders in etc, copy base configuration files, add kernkoa to UWSGI service and activate it. Also it will configure nginx to use root URL and restart it.
+7. Test it.
+	```http://<Server URL>/```
 
 ## Configuration of KernKoa:
 There are two steps to configure KernKoa, the configuration of the project and the configuration of the server:
