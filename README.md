@@ -28,13 +28,14 @@ Looking into the folder structure, you can define it as you want (in config.py) 
 
 ##Instalation of KernKoa:
 1. Install of basics: python-virtualenv nginx g++ build-essential python3 python3-dev
-2. Clone the project anywhere you want (/usr/local/ for less configuration) 
+	```apt-get install python-virtualenv nginx g++ build-essential python3 python3-dev```
+2. Clone the project anywhere you want (/usr/local/ for less configuration)<br>
 	```git clone https://github.com/blastter/kernkoa.git```
-3. Create the virtual envioroment with virtualenv inside the proyect.
+3. Create the virtual envioroment with virtualenv inside the proyect.<br>
 	```virtualenv -p python3 venv3```
-4. Activate the virtual envioroment.
+4. Activate the virtual envioroment.<br>
 	```. venv3/bin/activate```
-	The console should look like:
+	The console should look like:<br>
 	```(venv3) root@kernkoa:/usr/local/kernkoa#```
 
 ##Configuration of KernKoa:
