@@ -1,6 +1,7 @@
 # KernKoa
 
 Kern = Kernel (German)
+
 Koa = Kernel (Japanese)
 
 ## Definition
@@ -15,28 +16,20 @@ The KernKoa Proyect is designed to implement very modular solutions, and you can
 This backbone or kerner if you prefer is designed to use MVC to keep separate Models, Views (Templates using Werkzeug), Controllers. In the configuration file (config.py) you can configure the paths to different folder to contain the different modules for controllers, models and templates.
 
 ## Folder Structure
-Looking into the folder structure, you can define it as you want (in config.py) but the preconfigured is:<br>
-|-KernKoaFolder
+Looking into the folder structure, you can define it as you want (in config.py) but the preconfigured is:
 
+```|-KernKoaFolder
 	|-catalog
-
 	|	|-controller
-
 	|	|-model
-
 	|	|-print
-
 	|-templates
-
 	|-images
-
 	|-pdfs
-
 	|-system
-
 	|	|-addons
+	|	|-core```
 
-	|	|-core
 
 ## Instalation of KernKoa:
 1. Install of basics: python-virtualenv nginx g++ build-essential python3 python3-dev.
