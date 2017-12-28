@@ -1,0 +1,5 @@
+*/__pycache__
+venv3
+venv
+kernkoa_uwsgi.sock
+*.pyc

@@ -1,0 +1,33 @@
+from pdfgen import *
+test = pdfGenerator("/usr/local/sacservices/test.pdf")
+#folio
+test.addString(344, 734, "372190", "Helvetica", 14)
+#datos del cliente primera columna
+test.addString(105,702,"Albin Trotter E.", "Helvetica", 12)
+test.addString(490,702,"PIZAGUIRRE", "Helvetica", 12)
+test.addString(105,691,"Camino el Alba 9437", "Helvetica", 12)
+test.addString(105, 680, "Las Condes", "Helvetica", 12)
+test.addString(304, 680, "Santiago", "Helvetica", 12)
+test.addString(461, 680, "15644464-2", "Helvetica", 12)
+test.addString(105, 669, "228878050", "Helvetica", 12)
+test.addString(304, 669, "965881118", "Helvetica", 12)
+test.addString(409, 669, "PARTICULAR", "Helvetica", 12)
+test.addString(105, 658, "albin.trotter@gmail.com", "Helvetica", 12)
+test.addString(352, 658, "Teresa Cruz F.", "Helvetica", 12)
+#datos del producto primera columna
+test.addString(110, 642, "0830040003", "Helvetica", 12)
+test.addString(273, 642, "IONIZADO", "Helvetica", 12)
+test.addString(444, 642, "GAS LICUADO", "Helvetica", 12)
+test.addString(85, 630, "0000000001", "Helvetica", 12)
+test.addString(214, 630, "0000035333", "Helvetica", 12)
+test.addString(365, 630, "0000035333", "Helvetica", 12)
+test.addString(471, 630, "DISTRIBUCION", "Helvetica", 12)
+test.addString(85, 618, "GAS", "Helvetica", 12)
+test.addString(348, 618, "SuperGAS Ltda.", "Helvetica", 12)
+test.addString(499, 618, "0002538435", "Helvetica", 12)
+test.addString(150, 606, "00-00-00-1072533-1", "Helvetica", 12)
+test.addString(287, 606, "Antonio Cisfuentes", "Helvetica", 12)
+#Observaciones
+#test.addString(158, 388, "Cliente solicita avisar con dos horas de anticipaci\xc3\xb3n, para poder llegar a su casa para la atenci\xc3\xb3n.", "Helvetica", 12)
+test.addParagraph(158, 388, "Cliente solicita avisar con dos horas de anticipaci\xc3\xb3n, para poder llegar a su casa para la atenci\xc3\xb3n.", "Helvetica", 12, 591, 44, 3)
+test.save()
