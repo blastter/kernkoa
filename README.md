@@ -18,7 +18,8 @@ This backbone or kerner if you prefer is designed to use MVC to keep separate Mo
 ## Folder Structure
 Looking into the folder structure, you can define it as you want (in config.py) but the preconfigured is:
 
-```|-KernKoaFolder
+```
+|-KernKoaFolder
 	|-catalog
 	|	|-controller
 	|	|-model
@@ -28,7 +29,8 @@ Looking into the folder structure, you can define it as you want (in config.py) 
 	|-pdfs
 	|-system
 	|	|-addons
-	|	|-core```
+	|	|-core
+```
 
 
 ## Instalation of KernKoa:
