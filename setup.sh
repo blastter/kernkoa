@@ -1,32 +1,34 @@
-echo "Asignando Permisos a www-data para KernKoa"
+echo "Asign user permisions to www-data over kernkoa folder..."
 chown -R www-data:www-data ../kernkoa
 
-echo "Creando servicio uwsgi"
+echo "Creating UWSGI service..."
 cp ./install/emperor.uwsgi.service /etc/systemd/system/
 
-echo "Creando Carpetas uwsgi"
+echo "Crating UWSGI folders..."
 mkdir /etc/uwsgi
 mkdir /etc/uwsgi/vassals
 
-echo "Copiando configuracion uwsgi"
+echo "Copying UWSGI configuration file..."
 cp ./install/emperor.ini /etc/uwsgi
 
-echo "Configurando logs uwsgi"
+echo "Configuring uwsgi Logs (/var/log/uwsgi/)..."
 mkdir /var/log/uwsgi
 chown -R www-data:www-data /var/log/uwsgi
 
-echo "Agregando confguracion servicio kernkoa a uwsgi"
+echo "Adding Kernkoa to UWSGI Service..."
 ln -s /usr/local/kernkoa/kernkoa_uwsgi.ini /etc/uwsgi/vassals/
 
-echo "Desconectando Sitio por defecto de nginx"
+echo "Deleting default NGinX sites..."
 rm /etc/nginx/sites-enabled/default
 
-echo "Creando sitio de KernKoa"
+echo "Creating KernKoa site in NGinX..."
 ln -s /usr/local/kernkoa/kernkoa_nginx.conf /etc/nginx/sites-enabled/
 
-echo "Activando Servicio UWSGI"
+echo "Activating UWSGI service"
 systemctl enable emperor.uwsgi.service
 systemctl start emperor.uwsgi.service
 
-echo "Reiniciando NGinX"
+echo "Restarting NGinX Web Server"
 /etc/init.d/nginx restart
+
+echo "Success!!!.\n now you can try kernkoa writing server ip in any webbrowser.(http://<server ip>)"
