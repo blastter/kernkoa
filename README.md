@@ -1,4 +1,4 @@
-![alt text](https://raw.githubusercontent.com/blastter/kernkoa/master/images/kernkoachi.png | width=100)
+![](https://raw.githubusercontent.com/blastter/kernkoa/master/images/kernkoachi.png | width=100)
 # KernKoa
 
 Kern = Kernel (German)
