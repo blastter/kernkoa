@@ -36,7 +36,7 @@ Looking into the folder structure, you can define it as you want (in config.py) 
 ## Instalation of KernKoa:
 1. Install of basics: python-virtualenv nginx g++ build-essential python3 python3-dev.
 
-	```apt-get install python-virtualenv nginx g++ build-essential python3 python3-dev```
+	```apt-get install python-virtualenv nginx g++ build-essential python3 python3-dev git```
 
 2. Clone the project anywhere you want (/usr/local/ for less configuration)
 
@@ -54,6 +54,8 @@ Looking into the folder structure, you can define it as you want (in config.py) 
 
 	```(venv3) root@kernkoa:/usr/local/kernkoa#```
 
+	The (venv3) before the loginpathroot what ever the name is, means that you are inside a virtual envioronment.
+
 5. Install python libs:
 
 	```pip install uwsgi flask```
@@ -67,7 +69,9 @@ Looking into the folder structure, you can define it as you want (in config.py) 
 	```sh setup.sh```
 
 	It will install UWSGI service, create de configuration folders in etc, copy base configuration files, add kernkoa to UWSGI service and activate it. Also it will configure nginx to use root URL and restart it.
+	
 7. Test it.
+
 	```http://<Server URL>/```
 
 ## Configuration of KernKoa:

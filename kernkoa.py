@@ -143,6 +143,11 @@ def folder(folder, library, classes, method):
 	data = meth(params)
 	return data
 
+@app.route(config.base + "/", defaults={"path":""})
+@app.route(config.base + "/<path:path>")
+def allPath(path):
+	return path
+
 #execute of the app when debuging.
 #when you execute kernkoa.py directly form python it mounts an debug http server.
 if __name__ == '__main__':
