@@ -1,3 +1,6 @@
+echo "Asignando Permisos a www-data para KernKoa"
+chown -R www-data:www-data ../kernkoa
+
 echo "Creando servicio uwsgi"
 cp ./install/emperor.uwsgi.service /etc/systemd/system/
 
