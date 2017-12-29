@@ -6,7 +6,7 @@ Koa = Kernel (Japanese)
 
 ## Contents
 - [Definition](#definition)
-- [Defaut Folder Structure](#default folder structure)
+- [DefautFolderStructure](#defaultfolderstructure)
 - [Instalation](#instalation)
 - [Configuration](#Configuration)
 
