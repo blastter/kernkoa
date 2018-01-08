@@ -93,6 +93,7 @@ There are two steps to configure KernKoa, the configuration of the project and t
 ## FastExample:
 ### Fast Hello World:
 First you create a file (fasthelloworld.py) in the controller path that you've defined un de config.py file (default: "./catalog/controller/"), and then you use the information on the code below:
+
 	```
 		#!/usr/bin/env python
 		# -*- coding: utf-8 -*-
@@ -104,9 +105,9 @@ First you create a file (fasthelloworld.py) in the controller path that you've d
 				return "hello world!!." #data to be displayed on the browser or to be send to de M2M solution (like IoT and other things).
 	```
 The result of this function shuold for URL (http://<yourIPAddress:Port>/fasthelloworld/fastHelloClass/fastHelloWorld) be:
-		```
-			hello world!!.
-		```
+	```
+		hello world!!.
+	```
 
 Then you enter to the url http://<yourIPAddress:Port>/fasthelloworld/fastHelloClass/fastHelloWorld
 	You also can use parameters to print them or to check data, this is the example of a data function:
