@@ -91,7 +91,7 @@ There are two steps to configure KernKoa, the configuration of the project and t
 
 ## FastExample:
 ### Fast Hello World:
-	First you create a file (fasthelloworld.py) in the controller path that you've defined un de config.py file (default: "./catalog/controller/"), and then you use the information on the code below:
+First you create a file (fasthelloworld.py) in the controller path that you've defined un de config.py file (default: "./catalog/controller/"), and then you use the information on the code below:
 	```
 		#!/usr/bin/env python
 		# -*- coding: utf-8 -*-
@@ -102,12 +102,12 @@ There are two steps to configure KernKoa, the configuration of the project and t
 			def fastHelloWorld(self, params = None): #the function you want to execute, self contained object to access object variables and functions, and params are the get (in url parameters after the ?) or post (form document sended by other mashine of from a web html form) parameters.
 				return "hello world!!." #data to be displayed on the browser or to be send to de M2M solution (like IoT and other things).
 	```
-	The result of this function shuold for URL (http://<yourIPAddress:Port>/fasthelloworld/fastHelloClass/fastHelloWorld) be:
+The result of this function shuold for URL (http://<yourIPAddress:Port>/fasthelloworld/fastHelloClass/fastHelloWorld) be:
 		```
 			hello world!!.
 		```
 
-	Then you enter to the url http://<yourIPAddress:Port>/fasthelloworld/fastHelloClass/fastHelloWorld
+Then you enter to the url http://<yourIPAddress:Port>/fasthelloworld/fastHelloClass/fastHelloWorld
 	You also can use parameters to print them or to check data, this is the example of a data function:
 	```
 		def fastHelloWorldWithParameters(self, params = None): #name of the function
@@ -125,9 +125,9 @@ There are two steps to configure KernKoa, the configuration of the project and t
 			with = parameters
 	```
 ### Folder Example:
-	If you check the config.py file, you can read the folder path that has the controllers, kernkoa execute controllers and in the controller you can access the models and the templates if you wish to use MVC structure.
-	To create your own folder you just create the folder inside the controler folder and then you create a file with the same structure from the "FastHelloWorld" section.
-	I'll create the "examples" folder inside controller folder, then I'll create the "folderexmple.py" file inside and I'll put the same code of the "FastHelloWorld" section.
+If you check the config.py file, you can read the folder path that has the controllers, kernkoa execute controllers and in the controller you can access the models and the templates if you wish to use MVC structure.
+To create your own folder you just create the folder inside the controler folder and then you create a file with the same structure from the "FastHelloWorld" section.
+I'll create the "examples" folder inside controller folder, then I'll create the "folderexmple.py" file inside and I'll put the same code of the "FastHelloWorld" section.
 
 	```
 		#!/usr/bin/env python
@@ -148,7 +148,7 @@ There are two steps to configure KernKoa, the configuration of the project and t
 			return returnData #return the content of returnData
 	```
 
-	And the result for the URL (http://<yourIPAddress:Port>/examples/folderexmple/fastHelloClass/fastHelloWorldWithParameters?hello=world&with=parameters) should be:
+And the result for the URL (http://<yourIPAddress:Port>/examples/folderexmple/fastHelloClass/fastHelloWorldWithParameters?hello=world&with=parameters) should be:
 
 	```
 			hello = world
