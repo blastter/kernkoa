@@ -146,6 +146,10 @@ def folder(folder, library, classes, method):
 @app.route(config.base + "/", defaults={"path":""})
 @app.route(config.base + "/<path:path>")
 def allPath(path):
+	urlPath = path.split("/")
+	print(repr(urlPath))
+	print(len(urlPath))
+	print(urlPath[len(urlPath)-3] + " - " + urlPath[len(urlPath)-2] + " - " + urlPath[len(urlPath)-1])
 	return path
 
 #execute of the app when debuging.

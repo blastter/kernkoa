@@ -90,7 +90,7 @@ There are two steps to configure KernKoa, the configuration of the project and t
 	+ kernkoa_nginx.conf: server and routing options for NGinX, read it to configure it.
 
 ## FastExample:
-1. Fast Hello World:
+### Fast Hello World:
 	First you create a file (fasthelloworld.py) in the controller path that you've defined un de config.py file (default: "./catalog/controller/"), and then you use the information on the code below:
 	```
 		#!/usr/bin/env python
@@ -120,7 +120,38 @@ There are two steps to configure KernKoa, the configuration of the project and t
 	```
 
 	The result of this function to url (http://<yourIPAddress:Port>/fasthelloworld/fastHelloClass/fastHelloWorldWithParameters?hello=world&with=parameters) should be:
-		```
+	```
 			hello = world
 			with = parameters
-		```
+	```
+### Folder Example:
+	If you check the config.py file, you can read the folder path that has the controllers, kernkoa execute controllers and in the controller you can access the models and the templates if you wish to use MVC structure.
+	To create your own folder you just create the folder inside the controler folder and then you create a file with the same structure from the "FastHelloWorld" section.
+	I'll create the "examples" folder inside controller folder, then I'll create the "folderexmple.py" file inside and I'll put the same code of the "FastHelloWorld" section.
+
+	```
+		#!/usr/bin/env python
+		# -*- coding: utf-8 -*-
+
+		from kernkoa import * #imports every varible from kernkoa (databases, loader, etc...).
+
+		class fastHelloClass: # the name of the class can be any name you want, except for the classes used un Flask, Werkzeug, KernKoa, Library you've imported, etc...
+			def fastHelloWorld(self, params = None): #the function you want to execute, self contained object to access object variables and functions, and params are the get (in url parameters after the ?) or post (form document sended by other mashine of from a web html form) parameters.
+				return "hello world!!." #data to be displayed on the browser or to be send to de M2M solution (like IoT and other things).
+
+		def fastHelloWorldWithParameters(self, params = None): #name of the function
+			if params == None:#check of you have parameters, if you don't execute the next line, else continue the function
+				return "Hello World" #return "hello world" to any system is calling the url if it doesn't has parameters
+			returnData = "" #create a variable to return data
+			for key, parameter in params.items(): #iterate each item un params and map them to key and parameter
+				returnData = returnData + key + " = " + parameter + "<br>" #add text to returnData
+			return returnData #return the content of returnData
+	```
+
+	And the result for the URL (http://<yourIPAddress:Port>/examples/folderexmple/fastHelloClass/fastHelloWorldWithParameters?hello=world&with=parameters) should be:
+
+	```
+			hello = world
+			with = parameters
+	```
+
