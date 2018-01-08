@@ -155,6 +155,9 @@ And the result for the URL (http://<yourIPAddress:Port>/examples/folderexmple/fa
 			hello = world
 			with = parameters
 	```
+For multiple folder please follow to folder1 to folder 7 in the controller folder.
+example: 
+http://<yourIPAddress:Port>/folder1/folder2/folder3/folder4/folder5/folder6/folder7/urllibrary/urlclass/urlmethod2?param1=1&param2=2&param3=3&param4=4
 ## Debugging
 As gods of programing probably don't need this, simple mortals like me need a lot of debugging, specilly when I forget to put the : after an if statement, a def or class definition.
 ### Production Envioroment
