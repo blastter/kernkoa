@@ -147,10 +147,23 @@ def folder(folder, library, classes, method):
 @app.route(config.base + "/<path:path>")
 def allPath(path):
 	urlPath = path.split("/")
-	print(repr(urlPath))
-	print(len(urlPath))
-	print(urlPath[len(urlPath)-3] + " - " + urlPath[len(urlPath)-2] + " - " + urlPath[len(urlPath)-1])
-	return path
+	urllibrary = urlPath[len(urlPath)-3]
+	urlclass = urlPath[len(urlPath)-2]
+	urlmethod = urlPath[len(urlPath)-1]
+	importPath = ""
+	for i in range(0, len(urlPath)-3):
+		importPath += "/" + urlPath[i]
+	sys.path.insert(0, config.libs["controller"] + importPath)
+	urlmodule = __import__(urllibrary)
+	urlclasslib = getattr(urlmodule, urlclass)
+	instance = urlclasslib()
+	urlexecmethod = getattr(instance, urlmethod)
+	if request.method == 'GET':
+		params = request.args
+	else:
+		params = request.form
+	data = urlexecmethod(params)
+	return data
 
 #execute of the app when debuging.
 #when you execute kernkoa.py directly form python it mounts an debug http server.
