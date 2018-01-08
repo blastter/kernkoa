@@ -94,7 +94,7 @@ There are two steps to configure KernKoa, the configuration of the project and t
 ### Fast Hello World:
 First you create a file (fasthelloworld.py) in the controller path that you've defined un de config.py file (default: "./catalog/controller/"), and then you use the information on the code below:
 
-	```
+	```python
 		#!/usr/bin/env python
 		# -*- coding: utf-8 -*-
 
