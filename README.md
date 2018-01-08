@@ -94,73 +94,75 @@ There are two steps to configure KernKoa, the configuration of the project and t
 ### Fast Hello World:
 First you create a file (fasthelloworld.py) in the controller path that you've defined un de config.py file (default: "./catalog/controller/"), and then you use the information on the code below:
 
-	```
-		#!/usr/bin/env python
-		# -*- coding: utf-8 -*-
+```python
+	#!/usr/bin/env python
+	# -*- coding: utf-8 -*-
 
-		from kernkoa import * #imports every varible from kernkoa (databases, loader, etc...).
+	from kernkoa import * #imports every varible from kernkoa (databases, loader, etc...).
 
-		class fastHelloClass: # the name of the class can be any name you want, except for the classes used un Flask, Werkzeug, KernKoa, Library you've imported, etc...
-			def fastHelloWorld(self, params = None): #the function you want to execute, self contained object to access object variables and functions, and params are the get (in url parameters after the ?) or post (form document sended by other mashine of from a web html form) parameters.
-				return "hello world!!." #data to be displayed on the browser or to be send to de M2M solution (like IoT and other things).
-	```
+	class fastHelloClass: # the name of the class can be any name you want, except for the classes used un Flask, Werkzeug, KernKoa, Library you've imported, etc...
+		def fastHelloWorld(self, params = None): #the function you want to execute, self contained object to access object variables and functions, and params are the get (in url parameters after the ?) or post (form document sended by other mashine of from a web html form) parameters.
+			return "hello world!!." #data to be displayed on the browser or to be send to de M2M solution (like IoT and other things).
+```
 The result of this function shuold for URL (http://<yourIPAddress:Port>/fasthelloworld/fastHelloClass/fastHelloWorld) be:
 
-	```
-		hello world!!.
-	```
+```
+	hello world!!.
+```
 
 Then you enter to the url http://<yourIPAddress:Port>/fasthelloworld/fastHelloClass/fastHelloWorld
 	You also can use parameters to print them or to check data, this is the example of a data function:
 
-	```
-		def fastHelloWorldWithParameters(self, params = None): #name of the function
-			if params == None:#check of you have parameters, if you don't execute the next line, else continue the function
-				return "Hello World" #return "hello world" to any system is calling the url if it doesn't has parameters
-			returnData = "" #create a variable to return data
-			for key, parameter in params.items(): #iterate each item un params and map them to key and parameter
-				returnData = returnData + key + " = " + parameter + "<br>" #add text to returnData
-			return returnData #return the content of returnData
-	```
+```python
+	def fastHelloWorldWithParameters(self, params = None): #name of the function
+		if params == None:#check of you have parameters, if you don't execute the next line, else continue the function
+			return "Hello World" #return "hello world" to any system is calling the url if it doesn't has parameters
+		returnData = "" #create a variable to return data
+		for key, parameter in params.items(): #iterate each item un params and map them to key and parameter
+			returnData = returnData + key + " = " + parameter + "<br>" #add text to returnData
+		return returnData #return the content of returnData
+```
 
 	The result of this function to url (http://<yourIPAddress:Port>/fasthelloworld/fastHelloClass/fastHelloWorldWithParameters?hello=world&with=parameters) should be:
-	```
-			hello = world
-			with = parameters
-	```
+```
+		hello = world
+		with = parameters
+```
 ### Folder Example:
 If you check the config.py file, you can read the folder path that has the controllers, kernkoa execute controllers and in the controller you can access the models and the templates if you wish to use MVC structure.
 To create your own folder you just create the folder inside the controler folder and then you create a file with the same structure from the "FastHelloWorld" section.
 I'll create the "examples" folder inside controller folder, then I'll create the "folderexmple.py" file inside and I'll put the same code of the "FastHelloWorld" section.
 
-	```
-		#!/usr/bin/env python
-		# -*- coding: utf-8 -*-
+```python
+	#!/usr/bin/env python
+	# -*- coding: utf-8 -*-
 
-		from kernkoa import * #imports every varible from kernkoa (databases, loader, etc...).
+	from kernkoa import * #imports every varible from kernkoa (databases, loader, etc...).
 
-		class fastHelloClass: # the name of the class can be any name you want, except for the classes used un Flask, Werkzeug, KernKoa, Library you've imported, etc...
-			def fastHelloWorld(self, params = None): #the function you want to execute, self contained object to access object variables and functions, and params are the get (in url parameters after the ?) or post (form document sended by other mashine of from a web html form) parameters.
-				return "hello world!!." #data to be displayed on the browser or to be send to de M2M solution (like IoT and other things).
+	class fastHelloClass: # the name of the class can be any name you want, except for the classes used un Flask, Werkzeug, KernKoa, Library you've imported, etc...
+		def fastHelloWorld(self, params = None): #the function you want to execute, self contained object to access object variables and functions, and params are the get (in url parameters after the ?) or post (form document sended by other mashine of from a web html form) parameters.
+			return "hello world!!." #data to be displayed on the browser or to be send to de M2M solution (like IoT and other things).
 
-		def fastHelloWorldWithParameters(self, params = None): #name of the function
-			if params == None:#check of you have parameters, if you don't execute the next line, else continue the function
-				return "Hello World" #return "hello world" to any system is calling the url if it doesn't has parameters
-			returnData = "" #create a variable to return data
-			for key, parameter in params.items(): #iterate each item un params and map them to key and parameter
-				returnData = returnData + key + " = " + parameter + "<br>" #add text to returnData
-			return returnData #return the content of returnData
-	```
+	def fastHelloWorldWithParameters(self, params = None): #name of the function
+		if params == None:#check of you have parameters, if you don't execute the next line, else continue the function
+			return "Hello World" #return "hello world" to any system is calling the url if it doesn't has parameters
+		returnData = "" #create a variable to return data
+		for key, parameter in params.items(): #iterate each item un params and map them to key and parameter
+			returnData = returnData + key + " = " + parameter + "<br>" #add text to returnData
+		return returnData #return the content of returnData
+```
 
 And the result for the URL (http://<yourIPAddress:Port>/examples/folderexmple/fastHelloClass/fastHelloWorldWithParameters?hello=world&with=parameters) should be:
 
-	```
-		hello = world
-		with = parameters
-	```
+```
+	hello = world
+	with = parameters
+```
 For multiple folder please follow to folder1 to folder 7 in the controller folder.
-example: 
-http://<yourIPAddress:Port>/folder1/folder2/folder3/folder4/folder5/folder6/folder7/urllibrary/urlclass/urlmethod2?param1=1&param2=2&param3=3&param4=4
+example:
+
+```http://<yourIPAddress:Port>/folder1/folder2/folder3/folder4/folder5/folder6/folder7/urllibrary/urlclass/urlmethod2?param1=1&param2=2&param3=3&param4=4```
+
 ## Debugging
 As gods of programing probably don't need this, simple mortals like me need a lot of debugging, specilly when I forget to put the : after an if statement, a def or class definition.
 ### Production Envioroment
