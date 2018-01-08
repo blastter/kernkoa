@@ -123,7 +123,7 @@ Then you enter to the url http://<yourIPAddress:Port>/fasthelloworld/fastHelloCl
 		return returnData #return the content of returnData
 ```
 
-	The result of this function to url (http://<yourIPAddress:Port>/fasthelloworld/fastHelloClass/fastHelloWorldWithParameters?hello=world&with=parameters) should be:
+The result of this function to url (http://<yourIPAddress:Port>/fasthelloworld/fastHelloClass/fastHelloWorldWithParameters?hello=world&with=parameters) should be:
 ```
 		hello = world
 		with = parameters
