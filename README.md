@@ -10,6 +10,7 @@ Koa = Kernel (Japanese)
 - [DefautFolderStructure](#defaultfolderstructure)
 - [Instalation](#instalation)
 - [Configuration](#Configuration)
+- [FastExample](#fastexample)
 
 ## Definition
 KernKoa is an easy to use kernel (or BackBone if you prefer) for webservices to develop fast webservices based in python, with dinamic routes calling libraries clases and method using the URL. The URL based calls make easy and to implement webpages in python so you dont hav to configure complex route files and you can faste test you web application.
@@ -87,3 +88,39 @@ There are two steps to configure KernKoa, the configuration of the project and t
 	+ config.py: is the base configuration of KernKoa, here you can configure base path for the system, base URL, databases, folders names, name of the project (if you change it to other name), and so on. For more information read config.py file.
 	+ kernkoa_uwsgi.ini: configuration of uwsgi fast cgi script, read it to change paramenters.
 	+ kernkoa_nginx.conf: server and routing options for NGinX, read it to configure it.
+
+## FastExample:
+1. Fast Hello World:
+	First you create a file (fasthelloworld.py) in the controller path that you've defined un de config.py file (default: "./catalog/controller/"), and then you use the information on the code below:
+	```
+		#!/usr/bin/env python
+		# -*- coding: utf-8 -*-
+
+		from kernkoa import * #imports every varible from kernkoa (databases, loader, etc...).
+
+		class fastHelloClass: # the name of the class can be any name you want, except for the classes used un Flask, Werkzeug, KernKoa, Library you've imported, etc...
+			def fastHelloWorld(self, params = None): #the function you want to execute, self contained object to access object variables and functions, and params are the get (in url parameters after the ?) or post (form document sended by other mashine of from a web html form) parameters.
+				return "hello world!!." #data to be displayed on the browser or to be send to de M2M solution (like IoT and other things).
+	```
+	The result of this function shuold for URL (http://<yourIPAddress:Port>/fasthelloworld/fastHelloClass/fastHelloWorld) be:
+		```
+			hello world!!.
+		```
+
+	Then you enter to the url http://<yourIPAddress:Port>/fasthelloworld/fastHelloClass/fastHelloWorld
+	You also can use parameters to print them or to check data, this is the example of a data function:
+	```
+		def fastHelloWorldWithParameters(self, params = None): #name of the function
+			if params == None:#check of you have parameters, if you don't execute the next line, else continue the function
+				return "Hello World" #return "hello world" to any system is calling the url if it doesn't has parameters
+			returnData = "" #create a variable to return data
+			for key, parameter in params.items(): #iterate each item un params and map them to key and parameter
+				returnData = returnData + key + " = " + parameter + "<br>" #add text to returnData
+			return returnData #return the content of returnData
+	```
+
+	The result of this function to url (http://<yourIPAddress:Port>/fasthelloworld/fastHelloClass/fastHelloWorldWithParameters?hello=world&with=parameters) should be:
+		```
+			hello = world
+			with = parameters
+		```
