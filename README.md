@@ -163,15 +163,27 @@ example:
 
 ```http://<yourIPAddress:Port>/folder1/folder2/folder3/folder4/folder5/folder6/folder7/urllibrary/urlclass/urlmethod2?param1=1&param2=2&param3=3&param4=4```
 
+Result:
+
+```
+param3 = 3
+param1 = 1
+param4 = 4
+param2 = 2
+```
+
 ## Debugging
 As gods of programing probably don't need this, simple mortals like me need a lot of debugging, specilly when I forget to put the : after an if statement, a def or class definition.
-### Production Envioroment
-The log is configured in the kerkoa_wsgi.ini file, and the defaul path is "/var/log/uwsgi/kernkoa_uwsgi.log" normally I use less to read it, with shift + F to get the last errors. Also is recomended to use the print (some times with repr (get the array or dictionary content en raw format(Plain text))) when samething is failing.
-The log path can be changed to any path you want, also if you don't have permisions to write to a folder you can use the same path as kernkoa to write the log there.
-Every time you modify any file you must writte ```systemctl restart emperor.uwsgi.service``` so uwsgi commit the changes on production envioronment.
 
 ### DevelopmentEnvioroment
-Just execute kernkoa directly using:
+Just directly execute kernkoa in the virtual envioronment using:
 ```python kernkoa.py```
-And the debugging evioronment will start at port 5000. The changes will take efect everytime you modify a file, witch doesn't happens when you are in production envioronment where you have to restart the uwsgi service everytime you change a file in the project (systemctl restart emperor.uwsgi.service).
+The debugging evioronment will start at port 5000. The changes will take efect everytime you modify a file, witch doesn't happens when you are in production envioronment where you have to restart the uwsgi service everytime you change a file in the project (systemctl restart emperor.uwsgi.service).
+
+### Production Envioroment
+The log is configured in the kerkoa_wsgi.ini file, and the default path is "/var/log/uwsgi/kernkoa_uwsgi.log" normally I use ```less``` to read it, with shift + F to get the lastest errors. Also is recomended to use the print (some times with repr (get the array or dictionary content en raw format(Plain text))so you can see the information inside the variable) when something is failing.
+The log path can be changed to any path you want, also if you don't have permisions to write to the log folder you can use the same path as kernkoa to write the log there.
+Every time you modify any file you must execute the command ```systemctl restart emperor.uwsgi.service``` so uwsgi commit the changes on production envioronment(by restarting it).
+
+
 
