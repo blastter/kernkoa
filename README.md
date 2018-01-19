@@ -194,6 +194,24 @@ Because of "big complex tasks" (or just "complex task"), the comunity had create
 
 KernKoa implements asynchronous task in a very simple way. You create two methods inside your module, one normal task to execute the asynchronous task and the asynchronous task that will be executed asynchronous. The normal task responce will be the asynchronous task id so the client ask for the state of the task, and with the same id when the task is ready the server will responce with the result of the big process.
 
+### Installing Async Support
+
+To install async support you need to follow to next steps:
+
+As sudo:
+
+```apt-get install redis-server```
+
+In KernKoa virtual envioronment:
+
+```pip install celery flask_celery```
+
+To start Celery you must execute on non root user the command:
+
+```celery -A kernkoa.celery worker --loglevel=info --logfile=/home/blastter/celery.log```
+
+### AsyncExample
+
 The next example is of an asynchronous Task.
 Creates in ./catalog/controller/celeryexample/asynclibrary/asyncclasstriggerfunction
 URL to execute it is: ```http://<yourIPAddress:Port>/celeryexample/asynclibrary/asyncclass/triggerfunction```
