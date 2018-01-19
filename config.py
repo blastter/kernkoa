@@ -62,6 +62,10 @@ libs = {
 		}
 
 
+libsCelery = {
+		"asynclibrary": path + "/catalog/controller/celeryexample"
+}
+
 #Default Module to load on index.
 home = "./main/main"
 				
