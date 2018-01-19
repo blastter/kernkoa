@@ -236,4 +236,21 @@ class asyncclass:
         return i + 1
 ```
 
+When you call the triggerfunction method on the class, it will return a link to know the status of the task:
+
+```<a href="http://<yourIPAddress:Port>/status/7aed018b-cf67-44f2-819d-22546547d14a">Async Test</a>```
+
+The link above will guide you to the status page:
+
+```{"status": "inProgress", "state": {"number": 1, "title": "Contando con 30 segundos de desfase hasta 10"}}```
+
+If you request again, a little later, it will responce:
+
+```{"status": "inProgress", "state": {"number": 5, "title": "Contando con 30 segundos de desfase hasta 10"}}```
+
+When the task finished the long task, the same link will return you the state and the result:
+
+```{"status": "SUCCESS", "data": 10}```
+
+
 
