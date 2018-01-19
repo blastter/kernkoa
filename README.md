@@ -198,7 +198,7 @@ The next example is of an asynchronous Task.
 Creates in ./catalog/controller/celeryexample/asynclibrary/asyncclasstriggerfunction
 URL to execute it is: ```http://<yourIPAddress:Port>/celeryexample/asynclibrary/asyncclass/triggerfunction```
 
-```
+```python
 #!/usr/bin/env python
 # -*- coding: utf-8 -*-
 from kernkoa import * #imports every varible from kernkoa (databases, loader, etc...).
