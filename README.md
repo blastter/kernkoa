@@ -187,7 +187,7 @@ The log is configured in the kerkoa_wsgi.ini file, and the default path is "/var
 The log path can be changed to any path you want, also if you don't have permisions to write to the log folder you can use the same path as kernkoa to write the log there.
 Every time you modify any file you must execute the command ```systemctl restart emperor.uwsgi.service``` so uwsgi commit the changes on production environment(by restarting it).
 
-##Asynchronous
+## Asynchronous
 
 Complex task are a great deal, when you are developing services. When a big complex task is executed, it takes over the main thread so the server won't responce new requests till the "big complex task" is finnished. Most of the problems happens when multiple clients, are calling request to you web page, they get stuck and get timeout error (when the task is to long to be executed on the main thread), till the server finnish the "big complex task" from the client that made the request and then listens again the other clients requests.
 Because of "big complex tasks" (or just "complex task"), the comunity had created Celery wich is a asynchronous task manager wich executes the big complex tasks in other thread (process) or theads (processes) so the main thread (process) doesn't stop getting new requests from other clients while processing the complex task in other process.
