@@ -221,6 +221,20 @@ Because of "big complex tasks" (or just "complex task"), the comunity had create
 
 KernKoa implements asynchronous task in a very simple way. You create two methods inside your module, one normal task to execute the asynchronous task and the asynchronous task that will be executed asynchronous. The normal task responce will be the asynchronous task id so the client ask for the state of the task, and with the same id when the task is ready the server will responce with the result of the big process.
 
+### Explanation
+
+There is two threads running, the uwsgi KernKoa thread and the celery thread, the KernKoa thread throws tasks to the celery thread in a queue, then celery read the queue (FIFO) and the execute the task. When the task has finnished celery returns the task result to a result queue or buffer, so KernKoa can get it by the unique task id.
+KernKoa Thread		Celery Thread
+		|----Task-------->|
+		|<--------Task ID-|
+		|----Task Ready?->|
+		|<----Task Status-|
+		.				  .
+		.				  .
+		.				  .
+		|----Task Ready?->|
+		|<----Task Result-|
+
 ### Staring Async Support
 
 To start Celery you must execute on non root user the command:
