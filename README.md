@@ -227,15 +227,15 @@ There is two threads running, the uwsgi KernKoa thread and the celery thread, th
 
 ````
 KernKoa Thread		Celery Thread
-		|----Task-------->|
-		|<--------Task ID-|
-		|----Task Ready?->|
-		|<----Task Status-|
-		.				  .
-		.				  .
-		.				  .
-		|----Task Ready?->|
-		|<----Task Result-|
+        |----Task-------->|
+        |<--------Task ID-|
+        |----Task Ready?->|
+        |<----Task Status-|
+                 .
+                 .
+                 .
+        |----Task Ready?->|
+        |<----Task Result-|
 ```
 
 ### Staring Async Support
