@@ -290,7 +290,7 @@ class asyncclass:
 
 When you call the triggerfunction method on the class, it will return a link to know the status of the task:
 
-```
+```html
 <a href="http://<yourIPAddress:Port>/status/7aed018b-cf67-44f2-819d-22546547d14a">Async Test</a>
 ```
 
