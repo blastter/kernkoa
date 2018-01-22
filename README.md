@@ -226,16 +226,16 @@ KernKoa implements asynchronous task in a very simple way. You create two method
 There is two threads running, the uwsgi KernKoa thread and the celery thread, the KernKoa thread throws tasks to the celery thread in a queue, then celery read the queue (FIFO) and the execute the task. When the task has finnished celery returns the task result to a result queue or buffer, so KernKoa can get it by the unique task id.
 
 ```
-KernKoa Thread		Celery Thread
-        |----Task-------->|
-        |<--------Task ID-|
-        |----Task Ready?->|
-        |<----Task Status-|
-                 .
-                 .
-                 .
-        |----Task Ready?->|
-        |<----Task Result-|
+KernKoa Thread     Celery Thread
+       |----Task-------->|
+       |<--------Task ID-|
+       |----Task Ready?->|
+       |<----Task Status-|
+                .
+                .
+                .
+       |----Task Ready?->|
+       |<----Task Result-|
 ```
 
 ### Staring Async Support
@@ -290,19 +290,27 @@ class asyncclass:
 
 When you call the triggerfunction method on the class, it will return a link to know the status of the task:
 
-```<a href="http://<yourIPAddress:Port>/status/7aed018b-cf67-44f2-819d-22546547d14a">Async Test</a>```
+```
+<a href="http://<yourIPAddress:Port>/status/7aed018b-cf67-44f2-819d-22546547d14a">Async Test</a>
+```
 
 The link above will guide you to the status page:
 
-```{"status": "inProgress", "state": {"number": 1, "title": "Contando con 30 segundos de desfase hasta 10"}}```
+```json
+{"status": "inProgress", "state": {"number": 1, "title": "Contando con 30 segundos de desfase hasta 10"}}
+```
 
 If you request again, a little later, it will responce:
 
-```{"status": "inProgress", "state": {"number": 5, "title": "Contando con 30 segundos de desfase hasta 10"}}```
+```json
+{"status": "inProgress", "state": {"number": 5, "title": "Contando con 30 segundos de desfase hasta 10"}}
+```
 
 When the task finished the long task, the same link will return you the state and the result:
 
-```{"status": "SUCCESS", "data": 10}```
+```json
+{"status": "SUCCESS", "data": 10}
+```
 
 
 
