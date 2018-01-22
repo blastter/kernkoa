@@ -46,7 +46,24 @@ Looking into the folder structure, you can define it as you want (in config.py) 
 ## Instalation:
 1. Install of basics: python-virtualenv nginx g++ build-essential python3 python3-dev.
 
-	```apt-get install python-virtualenv nginx g++ build-essential python3 python3-dev git```
+	```apt-get install python-virtualenv nginx g++ build-essential python3 python3-dev git redis-server```
+	
+	### python-virtualenv
+		Is the virtual enviioronment support, so you can install modules without compatibility issues with other solutions you've running on the server.
+	### nginx
+		Web server
+	### g++
+		Compiler to compile some pip install modules.
+	### build-essential
+		Herramienta de paquetizado y desarrollo de Debian (Development Tools en centos)
+	### python3
+		To program and run KernKoa, Flask, etc...
+	### python3-dev
+		Development package for python3, to use pip and install lots of packages.
+	### git
+		Version control tool, to clone this project.
+	### redis-server
+		On ram no-sql database.
 
 2. Clone the project anywhere you want (/usr/local/ for less configuration)
 
@@ -64,15 +81,25 @@ Looking into the folder structure, you can define it as you want (in config.py) 
 
 	```(venv3) root@kernkoa:/usr/local/kernkoa#```
 
-	The (venv3) before the loginpathroot what ever the name is, means that you are inside a virtual environment.
+	The (venv3) before the loginpath what ever the name is, means that you are inside a virtual environment.
 
 5. Install python libs:
 
-	```pip install uwsgi flask```
+	```pip install uwsgi flask celery flask_celery```
 
-	Te test it:
+	### uwsgi
+		The cgi engine to run KernKoa in a file socket (don't like the port socket, I find them insecure, and some times you've to deal with firewalls or iptables), but you can use a port.
+	### flask
+		Main framework used by KernKoa. if you want you can use flask directly and easily build your own KernKoa from scrach.
+	### celery
+		Is the asynchronous task manager, to use a different thread for long and heavy tasks.
+	### flask_celery
+		Is the plugin for flask, to use celery functions.
+
+	To test it:
 	```python kernkoa.py```
-	Ther debug http server shoud be listening on port 5000.
+	When you run the abobe commado in the shell, you run Flask in debug mode, it has a web server for development only purposes, that can be requested from web browser at port 5000
+	```http://<your server ip>:5000/```
 
 6. Execute setup.sh. (if server already have nginx please don't execute this. Open de the script and omit the rm part for nginx).
 	
@@ -194,17 +221,7 @@ Because of "big complex tasks" (or just "complex task"), the comunity had create
 
 KernKoa implements asynchronous task in a very simple way. You create two methods inside your module, one normal task to execute the asynchronous task and the asynchronous task that will be executed asynchronous. The normal task responce will be the asynchronous task id so the client ask for the state of the task, and with the same id when the task is ready the server will responce with the result of the big process.
 
-### Installing Async Support
-
-To install async support you need to follow to next steps:
-
-As sudo:
-
-```apt-get install redis-server```
-
-In KernKoa virtual envioronment:
-
-```pip install celery flask_celery```
+### Staring Async Support
 
 To start Celery you must execute on non root user the command:
 
