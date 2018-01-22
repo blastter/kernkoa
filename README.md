@@ -224,6 +224,8 @@ KernKoa implements asynchronous task in a very simple way. You create two method
 ### Explanation
 
 There is two threads running, the uwsgi KernKoa thread and the celery thread, the KernKoa thread throws tasks to the celery thread in a queue, then celery read the queue (FIFO) and the execute the task. When the task has finnished celery returns the task result to a result queue or buffer, so KernKoa can get it by the unique task id.
+
+````
 KernKoa Thread		Celery Thread
 		|----Task-------->|
 		|<--------Task ID-|
@@ -234,6 +236,7 @@ KernKoa Thread		Celery Thread
 		.				  .
 		|----Task Ready?->|
 		|<----Task Result-|
+```
 
 ### Staring Async Support
 
