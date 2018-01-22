@@ -105,7 +105,7 @@ Looking into the folder structure, you can define it as you want (in config.py) 
 	
 	```sh setup.sh```
 
-	It will install UWSGI service, create de configuration folders in etc, copy base configuration files, add kernkoa to UWSGI service and activate it. Also it will configure nginx to use root URL and restart it.
+	It will install UWSGI service, create de configuration folders in etc, copy base configuration files, add kernkoa to UWSGI service and activate it. Also it will configure nginx to use root URL and restart it (You can read what it does in the 'setup.sh' file).
 	
 7. Test it.
 
