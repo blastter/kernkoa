@@ -19,7 +19,7 @@ class mssql:
 	
 	autocommit = True
 	
-	def __init__(self, host="", user="sa", password="", database="flex"):
+	def __init__(self, host="", user="", password="", database=""):
 		try:
 			self.con = pyodbc.connect("DSN=" + database + ";UID=" + user + ";PWD=" + password)
 			cursor = self.con.cursor()

@@ -242,7 +242,7 @@ KernKoa Thread     Celery Thread
 
 To start Celery you must execute on non root user the command:
 
-```celery -A kernkoa.celery worker --loglevel=info --logfile=/home/blastter/celery.log```
+```celery -A kernkoa.celery worker --loglevel=info --logfile=/var/log/celery/celery.log```
 
 ### AsyncExample
 

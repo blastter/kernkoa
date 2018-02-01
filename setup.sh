@@ -15,6 +15,10 @@ echo "Configuring uwsgi Logs (/var/log/uwsgi/)..."
 mkdir /var/log/uwsgi
 chown -R www-data:www-data /var/log/uwsgi
 
+echo "Configuring uwsgi Logs (/var/log/uwsgi/)..."
+mkdir /var/log/celery
+chown -R www-data:www-data /var/log/celery
+
 echo "Adding Kernkoa to UWSGI Service..."
 ln -s /usr/local/kernkoa/kernkoa_uwsgi.ini /etc/uwsgi/vassals/
 

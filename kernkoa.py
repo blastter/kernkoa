@@ -79,21 +79,19 @@ def exeTask(instance, method, params = None):
 def backgroundTask(self, *args, **kwargs):
 	print(repr(args))
 	print(repr(kwargs))
-	moduleclass = ((str(type(kwargs["instance"])).replace("<class '", '')).replace("'>", '')).split(".")
-	params = kwargs["params"]
-	path = params["urlpath"].split("/")
-	urlpath = ""
-	for i in range(0,len(path)-3):
-		urlpath += "/" + path[i]
-	sys.path.insert(0,config.libs["controller"] + urlpath)
-	globals()[moduleclass[0]] = __import__(moduleclass[0])
-	if "dbs" in kwargs:
-		dbs = kwargs["dbs"]
+	urlpath = kwargs["params"]["urlpath"].split("/")
+	modulepath = ""
+	for i in range(0, len(urlpath)-3):
+		modulepath += "/" + urlpath[i]
+
+	sys.path.insert(0, config.libs["controller"] + modulepath)
+	module = __import__(urlpath[len(urlpath)-3])
+	print(repr(module))
+	mclass = getattr(module, urlpath[len(urlpath)-2])
+	instance = mclass()
+	method = getattr(instance, kwargs["method"])
 	self.update_state(state='inProgress', meta = {'method':kwargs["method"]})
-	if "params" in kwargs:
-		data = getattr(kwargs["instance"], kwargs["method"])(self, kwargs["params"])
-	else:
-		data = getattr(kwargs["instance"], kwargs["method"])(self)
+	data = method(self, kwargs["params"])
 	return {'status': 'COMPLETE', 'data': data}
 
 #-------------
@@ -201,11 +199,6 @@ def allPath(path):
 	paramsDict["urlpath"] = path
 	data = urlexecmethod(paramsDict)
 	return data
-
-for name,lib in config.libsCelery.items():
-	print("loading " + name + "(" + lib + ")...")
-	sys.path.insert(0,lib)
-	globals()[name] = __import__(name)
 
 #execute of the app when debuging.
 #when you execute kernkoa.py directly form python it mounts an debug http server.
