@@ -12,21 +12,22 @@ Koa = Kernel (Japanese)
 - [Configuration](#Configuration)
 - [FastExample](#fastexample)
 - [Debugging](#debugging)
+- [Loader] (#loader)
 - [Asynchronous](#asynchronous)
 
 ## Definition
-KernKoa is an easy to use kernel (or BackBone if you prefer) for webservices, to develop fast webservices based applications (modules in KernKoa) in python, with dynamic routes calling libraries clases and methods using the URLs. The URL based calls make easy and to implement webpages or webservices in python so you don't have to configure complex route files and you can faste test you web applications.
-KernKoa, now is implemented using Flask (microframework) as base to make the dynamic routing to generate instances of classes from a specific lybrary and the call methods with parameters. And it's runing on NGinX passing throw UWSGI.
+KernKoa is an easy to use kernel (or BackBone if you prefer) for webservices, to develop fast webservices based applications (modules in KernKoa) in python, with dynamic routes calling libraries clases and methods using the URLs. The URL based calls makes easy to test and implement webpages or webservices in python so you don't have to configure complex route files and configurations files.
+KernKoa, now is implemented using Flask (microframework) as base to make the dynamic routing to generate instances of classes from a specific lybrary and then call methods with the request data as parameters. And it's runing on NGinX passing throw UWSGI.
 
 Example (it doesn't work yet):
 
 http://example.exmaple.com/folder/library/class/method?parameter1=value1&....&paramaterN=valueN
 
-The KernKoa Project is designed to implement very modular solutions, and you can port from one kernkoa page or webservice to another easily if you have the standard configuration of databases and other things in the destination kernkoa server.
+The KernKoa Project is designed to implement very modular solutions, and you can port from one kernkoa page or webservice to another easily, if you have the standard configuration of databases and other things in the destination kernkoa server.
 This backbone (or kerner if you prefer) is designed to use MVC to keep separate Models, Views (Templates using Werkzeug) and Controllers. In the configuration file (config.py) you can configure the paths to different folders to contain the different modules for controllers, models and templates.
 
 ## Defaut Folder Structure
-Looking into the folder structure, you can define it as you want (in config.py) but the preconfigured is:
+Looking into the folder structure, you can define it as you want (in config.py) but the default is:
 
 ```
 |-KernKoaFolder
@@ -55,15 +56,15 @@ Looking into the folder structure, you can define it as you want (in config.py) 
 	### g++
 		Compiler to compile some pip install modules.
 	### build-essential
-		Herramienta de paquetizado y desarrollo de Debian (Development Tools en centos)
+		Tools for packing and development in Debian.(Development Tools en centos)
 	### python3
-		To program and run KernKoa, Flask, etc...
+		To program and run KernKoa, Flask, etc... (programing language)
 	### python3-dev
 		Development package for python3, to use pip and install lots of packages.
 	### git
 		Version control tool, to clone this project.
 	### redis-server
-		On ram no-sql database.
+		On ram no-sql database, to use asynchronous tasks.
 
 2. Clone the project anywhere you want (/usr/local/ for less configuration)
 
@@ -81,24 +82,26 @@ Looking into the folder structure, you can define it as you want (in config.py) 
 
 	```(venv3) root@kernkoa:/usr/local/kernkoa#```
 
-	The (venv3) before the loginpath what ever the name is, means that you are inside a virtual environment.
+	The (venv3) before the loginpath, means that you are inside a virtual environment, and
+	you are running with the python 3 stored in venv3 folder. All the libraries and modules
+	are in the venv3 folder too.
 
 5. Install python libs:
 
 	```pip install uwsgi flask celery flask_celery```
 
 	### uwsgi
-		The cgi engine to run KernKoa in a file socket (don't like the port socket, I find them insecure, and some times you've to deal with firewalls or iptables), but you can use a port.
+		The cgi engine to run KernKoa in a file socket (don't like to use port sockets, I find them insecure, and some times you've to deal with firewalls or iptables), but you can use a port if you want.
 	### flask
-		Main framework used by KernKoa. if you want you can use flask directly and easily build your own KernKoa from scrach.
+		Main framework used by KernKoa. if you want, you can use flask directly and easily build your own KernKoa from scrach.
 	### celery
 		Is the asynchronous task manager, to use a different thread for long and heavy tasks.
 	### flask_celery
-		Is the plugin for flask, to use celery functions.
+		Is the plugin for flask, to use celery async functions.
 
 	To test it:
 	```python kernkoa.py```
-	When you run the abobe commado in the shell, you run Flask in debug mode, it has a web server for development only purposes, that can be requested from web browser at port 5000
+	When you run the abobe commad in the shell, you run Flask in debug mode, it has a web server for development only purposes, that can be requested from web browser at port 5000.
 	```http://<your server ip>:5000/```
 
 6. Execute setup.sh. (if server already have nginx please don't execute this. Open de the script and omit the rm part for nginx).
@@ -214,6 +217,14 @@ The log is configured in the kerkoa_wsgi.ini file, and the default path is "/var
 The log path can be changed to any path you want, also if you don't have permisions to write to the log folder you can use the same path as kernkoa to write the log there.
 Every time you modify any file you must execute the command ```systemctl restart emperor.uwsgi.service``` so uwsgi commit the changes on production environment(by restarting it).
 
+## Loader
+In python you have many ways to load modules using ```__import__```and other commands, but in KernKoa it's easier you just need to write ```load```, and the type of module that you will be importing. 
+Example:
+
+```python
+
+```
+
 ## Asynchronous
 
 Complex task are a great deal, when you are developing services. When a big complex task is executed, it takes over the main thread so the server won't responce new requests till the "big complex task" is finnished. Most of the problems happens when multiple clients, are calling request to you web page, they get stuck and get timeout error (when the task is to long to be executed on the main thread), till the server finnish the "big complex task" from the client that made the request and then listens again the other clients requests.
@@ -244,7 +255,7 @@ To start Celery you must execute on non root user the command:
 
 ```celery -A kernkoa.celery worker --loglevel=info --logfile=/var/log/celery/celery.log```
 
-### AsyncExample
+### EasyAsyncExample
 
 The next example is of an asynchronous Task.
 Creates in ./catalog/controller/celeryexample/asynclibrary/asyncclasstriggerfunction

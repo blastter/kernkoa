@@ -2,7 +2,7 @@
 # -*- coding: utf-8 -*-
 
 '''
-	Configuration WebLine2
+	Configuration KernKoa
 	Author:
 			Albin Trotter E.
 	Date:
@@ -31,13 +31,13 @@ secretKey="development key"
 #used on kernkoa.py
 databases = {
 #	SQLite configuration
-#				"maindb":{
-#							"driver": "sqlite", 
-#							"host": "database.db", 
-#							"user": "",
-#							"password": "", 
-#							"database": ""
-#						},
+				"maindb":{
+							"driver": "sqlite", 
+							"host": path + "/database/testdatabase.sqlite3", 
+							"user": "",
+							"password": "", 
+							"database": ""
+						},
 #	MySQL Configuration
 #				"<MySQLDBName>":{
 #							"driver":"mysqldb",
@@ -74,3 +74,5 @@ pdfPath = path + "/pdfs"
 
 #flask debug
 flaskDebug = True
+
+defaultDatabase = "maindb"

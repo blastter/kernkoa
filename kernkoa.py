@@ -173,11 +173,14 @@ def methods(library, classes):
 	data = instance.index(params)
 	return data
 
-@app.route(config.base + "/", defaults={"path":""})
-@app.route(config.base + "/<path:path>")
+@app.route(config.base + "/", defaults={"path":""}, methods=["GET", "POST"])
+@app.route(config.base + "/<path:path>", methods=["GET", "POST"])
 def allPath(path):
+	if "favicon.ico" in path:
+		return "";
 	print(path)
 	urlPath = path.split("/")
+	print(repr(urlPath))
 	urllibrary = urlPath[len(urlPath)-3]
 	urlclass = urlPath[len(urlPath)-2]
 	urlmethod = urlPath[len(urlPath)-1]
