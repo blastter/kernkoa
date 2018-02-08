@@ -1,0 +1,111 @@
+<html>
+    <head>
+        <!--
+            Code Written by: Albin Trotter E.
+            Date: 07-02-2018
+            Las Modification: 07-02-2018
+            URL: https://github.com/blastter/kernkoa
+            file: message/index.html
+            Part of: message module
+            Goal: It's a form for an example for the KernKoa Project.
+        -->
+        <title>KernKoa Message System</title>
+        <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+        <style>
+            body{
+                margin: 0%;
+                font-family: Arial, Helvetica, sans-serif;
+            }
+
+            button{
+                background-color: crimson;
+                color: white;
+                width: 100%;
+            }
+            input{
+                width: 100%;
+            }
+            textarea{
+                width: 100%;
+                border: 1px;
+            }
+            input.user{
+                text-align: center;
+                border: 1px;
+                border-color: lightcoral;
+            }
+
+            div.data{
+                width: 50%;
+            }
+
+            div.messagebox{
+                border: 1px;
+                border-style: solid;
+                border-color: gray;
+                padding: 0.5%;
+                width: 50%;
+            }
+
+            div.userdata{
+                font-style: initial;
+            }
+
+            div.message{
+                padding: 0.5%;
+                border: 1px;
+                border-style: solid;
+                border-color: gray;
+            }
+
+            @media (max-width: 1000px){
+                button{
+                    font-size: 200%;
+                    width: 100%;
+                }
+                div.data{
+                    font-size: 200%;
+                    width: 100%;
+                }
+                input{
+                    font-size: 200%;
+                    width: 100%;
+                }
+                textarea{
+                    font-size: 200%;
+                    width: 100%;
+                }
+                div.messagebox{
+                    font-size: 200%;
+                    width: 100%;
+                }
+            }
+        </style>
+    </head>
+
+        <body>
+            <div class="main_container">
+                <div class="data"><input type="text" placeholder="Enter your nickname" name="user" class="user"/></div>
+                <div class="data"><textarea class="message" name="message" placeholder="Write your message here"></textarea></div>
+                <div class="data"><button class="submit" name="submit">Submit Message</button></div>
+                {% for id, information in messages.items() %}
+                <div class="messagebox">
+                    <div class="userdata">
+                        {{ information.user }} - {{ information.date }}
+                    </div>
+                    <div class="messagedata">
+                        {{ information.message }}
+                    </div>
+                </div>
+                {% endfor %}
+            </div>
+            <script>
+                $(".submit").unbind().on("click", function(){
+                    console.log("Submit Clicked!");
+                    $.post("{{ formurl }}", {user: $(".user").val(), message: $(".message").val()}, function(data){
+                        console.log(data);
+                    });
+                });
+            </script>
+    </body>
+</html>
