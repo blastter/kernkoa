@@ -1,7 +1,7 @@
 #!/usr/bin/env python
 # -*- coding: utf-8 -*-
 #import of base libraries
-from flask import Flask, request, session, g, redirect, url_for, abort, render_template, flash, send_file, Response, stream_with_context, current_app, has_request_context, make_response, jsonify
+from flask import Flask, request, session, g, redirect, url_for, abort, render_template, flash, send_file, Response, stream_with_context, current_app, has_request_context, make_response, jsonify, Response
 #from bson import json_util
 from celery import Celery
 #from flask_celeryext import RequestContextTask
@@ -64,7 +64,7 @@ from RequestContextTask import RequestContextTask
 
 #Realtime render template, delivers line by line while rendering in jinja2.
 def stream_template(template_name, **context):
-    app.update_template_context(context)
+	app.update_template_context(context)
 	t = app.jinja_env.get_template(template_name)
 	rv = t.stream(context)
 	rv.enable_buffering(5)
@@ -184,7 +184,7 @@ def methods(library, classes):
 @app.route(config.base + "/<path:path>", methods=["GET", "POST"])
 def allPath(path):
 	if "favicon.ico" in path:
-    		return "";
+			return "";
 	print(path)
 	urlPath = path.split("/")
 	print(repr(urlPath))
