@@ -62,6 +62,13 @@ celery.conf.update(app.config)
 from RequestContextTask import RequestContextTask
 #---------
 
+#Realtime render template, delivers line by line while rendering in jinja2.
+def stream_template(template_name, **context):
+    app.update_template_context(context)
+	t = app.jinja_env.get_template(template_name)
+	rv = t.stream(context)
+	rv.enable_buffering(5)
+	return rv
 
 #execute async method giving instance
 def exeTask(instance, method, params = None):
@@ -177,10 +184,14 @@ def methods(library, classes):
 @app.route(config.base + "/<path:path>", methods=["GET", "POST"])
 def allPath(path):
 	if "favicon.ico" in path:
-		return "";
+    		return "";
 	print(path)
 	urlPath = path.split("/")
 	print(repr(urlPath))
+
+	if urlPath[0] == "images":
+		return send_file(image2(urlPath), mimetype='image/' + path[-1][-3:])
+
 	urllibrary = urlPath[len(urlPath)-3]
 	urlclass = urlPath[len(urlPath)-2]
 	urlmethod = urlPath[len(urlPath)-1]
@@ -192,14 +203,30 @@ def allPath(path):
 	urlclasslib = getattr(urlmodule, urlclass)
 	instance = urlclasslib()
 	urlexecmethod = getattr(instance, urlmethod)
+	print(repr(request.headers))
+	data = None
+	params = None
+	if "json" in request.headers["Content-Type"]:
+		data = request.get_json()
 	if request.method == 'GET':
 		params = request.args
 	else:
 		params = request.form
+
 	paramsDict = {}
+	paramsDict["get"] = {}#request.args
+	get = request.args
+	for key, val in get.items():
+		paramsDict["get"][key] = val
+	paramsDict["post"] = {}#request.form
+	post = request.form
+	for key, val in post.items():
+		paramsDict["post"][key] = val
 	for key, val in params.items():
 		paramsDict[key] = val
 	paramsDict["urlpath"] = path
+	if data:
+		paramsDict["data"] = data
 	data = urlexecmethod(paramsDict)
 	return data
 
